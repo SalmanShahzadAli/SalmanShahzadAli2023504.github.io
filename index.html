@@ -1,1 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthMate - AI-Powered Hospital Management System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .team-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .badge:hover {
+            transform: translateY(-3px);
+        }
+
+        section {
+            background: white;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        h2 {
+            font-size: 2.2em;
+            color: #667eea;
+            margin-bottom: 20px;
+            border-left: 5px solid #764ba2;
+            padding-left: 20px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .team-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .team-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+
+        .team-card .roll {
+            font-size: 1em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .team-card .role {
+            font-size: 0.85em;
+            opacity: 0.8;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+            border-left: 4px solid #667eea;
+        }
+
+        .feature-card:hover {
+            transform: translateX(10px);
+        }
+
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .tech-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 3px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .video-container {
+            margin-top: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-placeholder {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px;
+            text-align: center;
+            color: white;
+        }
+
+        .video-placeholder h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            section {
+                padding: 25px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏥 HealthMate</h1>
+            <p class="subtitle">AI-Powered Hospital Management System</p>
+            <div class="team-badges">
+                <span class="badge">CS-331 SEPM</span>
+                <span class="badge">Fall 2025</span>
+                <span class="badge">GIKI</span>
+            </div>
+        </header>
+
+        <section>
+            <h2>👥 Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <h3>Salman Shahzad Ali</h3>
+                    <p class="roll">2023504</p>
+                    <p class="role">AI Chatbot Development & Model Training</p>
+                </div>
+                <div class="team-card">
+                    <h3>Syed Murtaza Salman</h3>
+                    <p class="roll">2023694</p>
+                    <p class="role">Model Training & UI/UX Design</p>
+                </div>
+                <div class="team-card">
+                    <h3>Muhammad Ashir Siddiqui</h3>
+                    <p class="roll">2023385</p>
+                    <p class="role">AI Techniques & PostgreSQL Backend</p>
+                </div>
+                <div class="team-card">
+                    <h3>Muqeem Ahmad Soomro</h3>
+                    <p class="roll">2023561</p>
+                    <p class="role">Chatbot Integration & User Experience</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>📖 About HealthMate</h2>
+            <p style="font-size: 1.1em; color: #555; line-height: 1.8;">
+                HealthMate is an innovative AI-powered hospital management system designed to revolutionize patient-doctor interactions. 
+                Our platform leverages advanced artificial intelligence to provide preliminary medical consultation through specialized chatbots, 
+                making healthcare more accessible and efficient for the GIKI community.
+            </p>
+            <p style="font-size: 1.1em; color: #555; line-height: 1.8; margin-top: 15px;">
+                The system features domain-restricted AI chatbots trained on medical datasets, offering 24/7 availability for initial health assessments 
+                and guiding patients to the appropriate specialized care when needed.
+            </p>
+        </section>
+
+        <section>
+            <h2>⚡ Key Functionalities</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>🔐 User Authentication</h3>
+                    <p>Secure registration and login system for patients and administrators</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🧠 Mental Health Chatbot</h3>
+                    <p>AI-powered consultation for mental health concerns and guidance</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⚕️ General Health Chatbot</h3>
+                    <p>Comprehensive general health queries and preliminary diagnosis</p>
+                </div>
+                <div class="feature-card">
+                    <h3>💪 Fitness Chatbot</h3>
+                    <p>Personalized fitness advice and exercise recommendations</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🦴 Orthopedic Chatbot</h3>
+                    <p>Specialized consultation for bone and joint-related issues</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📅 Appointment Management</h3>
+                    <p>Seamless booking and scheduling of doctor consultations</p>
+                </div>
+                <div class="feature-card">
+                    <h3>👨‍⚕️ Doctor Consultation</h3>
+                    <p>Direct connection with specialized doctors for advanced care</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎛️ Admin Dashboard</h3>
+                    <p>Comprehensive panel for managing doctors and system operations</p>
+                </div>
+                <div class="feature-card">
+                    <h3>💬 Real-time Chat Sessions</h3>
+                    <p>Interactive communication between patients and AI chatbots</p>
+                </div>
+                <div class="feature-card">
+                    <h3>💊 Prescription System</h3>
+                    <p>Digital prescription issuance and notification system</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>🛠️ Technologies & Tools</h2>
+            <div class="tech-stack">
+                <div class="tech-item">React.js</div>
+                <div class="tech-item">Node.js</div>
+                <div class="tech-item">PostgreSQL</div>
+                <div class="tech-item">OpenAI API</div>
+                <div class="tech-item">Express.js</div>
+                <div class="tech-item">Natural Language Processing</div>
+                <div class="tech-item">RESTful APIs</div>
+                <div class="tech-item">JWT Authentication</div>
+                <div class="tech-item">Git & GitHub</div>
+            </div>
+        </section>
+
+        <section>
+            <h2>📂 Project Resources</h2>
+            <div class="cta-buttons">
+                <a href="https://github.com/SalmanShahzadAli/CS-331-Semester-Project-Backup-Repository.git" class="btn btn-primary" target="_blank">
+                    📦 View GitHub Repository
+                </a>
+                <a href="https://github.com/SalmanShahzadAli/healthmate/blob/main/README.md" class="btn btn-secondary" target="_blank">
+                    📄 Read Documentation
+                </a>
+            </div>
+        </section>
+
+        <section>
+            <h2>🎥 Project Walkthrough</h2>
+            <p style="font-size: 1.1em; color: #555; margin-bottom: 20px;">
+                Watch our comprehensive video demonstration showcasing all features and functionalities of HealthMate:
+            </p>
+            
+            <!-- Replace this section with your actual video embed after uploading -->
+            <div class="video-container">
+                <div class="video-placeholder">
+                    <h3>📹 Video Demo Coming Soon</h3>
+                    <p style="margin-top: 10px; font-size: 1.1em;">Upload your video to YouTube and replace this section with the embed code</p>
+                    <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.8;">Or add Google Drive link below after recording</p>
+                </div>
+            </div>
+            
+            <!-- INSTRUCTIONS: After uploading your video to YouTube, replace the video-placeholder div above with:
+            
+            <iframe width="100%" height="600" 
+                src="YOUR_YOUTUBE_EMBED_LINK" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+            
+            OR for Google Drive, use:
+            <a href="YOUR_GOOGLE_DRIVE_LINK" class="btn btn-primary" target="_blank">
+                🎬 Watch Video Demonstration
+            </a>
+            -->
+        </section>
+
+        <section>
+            <h2>🎯 Project Impact</h2>
+            <p style="font-size: 1.1em; color: #555; line-height: 1.8;">
+                HealthMate addresses the growing need for accessible healthcare services within the GIKI community. By providing AI-powered 
+                preliminary consultations, we reduce the burden on medical staff while ensuring students and faculty receive timely health guidance. 
+                Our system bridges the gap between patients and healthcare providers, making medical consultation more efficient and accessible 24/7.
+            </p>
+        </section>
+
+        <footer>
+            <p>Developed by Team HealthMate | CS-331 SEPM | Fall 2025</p>
+            <p style="margin-top: 10px;">Supervised by <a href="mailto:farah.saeed@giki.edu.pk">Dr. Farah Saeed</a></p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Ghulam Ishaq Khan Institute of Engineering Sciences and Technology</p>
+        </footer>
+    </div>
+</body>
+</html>
